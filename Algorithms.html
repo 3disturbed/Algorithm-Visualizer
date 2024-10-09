@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic iFrame Loader</title>
+    <style>
+    html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: rgb(32,32,32);
+            color: white;
+
+            width: 100%;
+            margin: auto;
+
+
+        }
+        .container {
+            max-width: 99%;
+            display: flex;
+            flex-direction: column;
+
+
+            
+            height: 100%;
+            border: 5 solid black;
+            border-radius: 10px;
+            background-color: rgb(1,1,1,0.5);
+
+            
+        }
+        label {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+        select {
+            padding: 5px 1px;
+            font-size: 1em;
+        }
+       
+        #foot {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color:  rgb(1,1,1,0.5);
+            color: white;
+            padding: 0px;
+        }
+        .iframe-container {
+           
+            flex: 1 1 auto; /* Allows the iframe to grow and fill available space */
+            overflow: hidden; /* Prevents scrollbars on the container */
+        }
+        iframe {
+            width: 99%;
+            height: 93%;
+            border: 1px solid #ccc;
+            border: 5 solid black;
+            border-radius: 10px;
+            overflow: hidden;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="pageSelect">Choose Visualizer</label>
+        <select id="pageSelect">
+            <option value="">--Select an algorithm--</option>
+            <option value="https://3disturbed.github.io/BubbleSortVisual/bubblesort.html">Bubble Sort</option>
+            <option value="https://3disturbed.github.io/BinarySearchVisual/BinarySearchVisualizer.html">Binary Search</option>
+    
+            <!-- Add more options as needed -->
+        </select>
+    <div class="iframe-container">
+        <iframe id="contentFrame" width="100%"src="" title="Content Frame">
+            Your browser does not support iframes.
+        </iframe>
+    </div>
+    </div>
+
+    <script>
+        // Get references to the select element and iframe
+        const pageSelect = document.getElementById('pageSelect');
+        const contentFrame = document.getElementById('contentFrame');
+
+        // Add an event listener for when the selection changes
+        pageSelect.addEventListener('change', function() {
+            const selectedURL = this.value;
+            if (selectedURL) {
+                // Optional: Validate the URL or restrict to allowed domains
+                contentFrame.src = selectedURL;
+            } else {
+                // If no selection, clear the iframe
+                contentFrame.src = '';
+            }
+        });
+    </script>
+    <div id="foot"><p> Created by Ben Darlington</p> </div>
+    
+</body>
+</html>
